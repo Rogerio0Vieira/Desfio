@@ -1,0 +1,47 @@
+﻿@model DesafioIntelectah.Models.Exame
+
+@{
+    ViewBag.Title = "Excluir";
+}
+
+<h2>Excluir</h2>
+
+<div>
+    <h4>Exame</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdTipoExame)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdTipoExame)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NomeExame)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomeExame)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ObservacaoExame)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ObservacaoExame)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Excluir" class="btn btn-danger" /> |
+            @Html.ActionLink("Voltar", "Index")
+        </div>
+    }
+</div>

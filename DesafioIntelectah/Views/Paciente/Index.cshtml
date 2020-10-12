@@ -1,0 +1,64 @@
+﻿@model IEnumerable<DesafioIntelectah.Models.Paciente>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Lista dos Pacientes</h2>
+<br />
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NomePaciente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CpfPaciente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataNascimentoPaciente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SexoPaciente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TelefonePaciente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailPaciente)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomePaciente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CpfPaciente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataNascimentoPaciente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SexoPaciente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TelefonePaciente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailPaciente)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.CodigoPaciente }) |
+                @Html.ActionLink("Detalhes", "Details", new { id = item.CodigoPaciente }) |
+                @Html.ActionLink("Excluir", "Delete", new { id = item.CodigoPaciente })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<a href="@Url.Action("Create", "Paciente")" class="btn btn-primary form-group">+ Cadastrar Novo</a>

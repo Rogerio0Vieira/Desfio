@@ -1,0 +1,150 @@
+﻿@model DesafioIntelectah.Models.ViewModel.ConsultaViewModel
+@Scripts.Render("~/Scripts/Paciente/PesquisaPaciente.js")
+@Scripts.Render("~/Scripts/Exame/PesquisaExame.js")
+
+@{
+    ViewBag.Title = "Cadastrar";
+}
+
+<h2>Cadastrar</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Consulta de Paciente</h4>
+            <div class="form-group">
+                @Html.LabelFor(model => model.IdPaciente, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-5">
+                    @Html.EditorFor(model => model.IdPaciente, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.IdPaciente, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.NomePacienteSelecionado, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-5">
+                    @Html.EditorFor(model => model.NomePacienteSelecionado, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.NomePacienteSelecionado, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.CpfPacienteConsulta, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-5">
+                    @Html.EditorFor(model => model.CpfPacienteConsulta, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CpfPacienteConsulta, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <div class="col-md-4"></div>
+                <div class="col-md-5">
+                    <button class="btn btn-primary form-control" name="btnPesquisaCpfPaciente" id="btnPesquisaCpfPaciente" onclick="OnclickPesquisarCpfPaciente()">Buscar por Cpf</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <div class="col-md-4"></div>
+                <div class="col-md-5">
+                    <a href="@Url.Action("Create", "Paciente")" target="_blank" class="btn btn-default form-control">+ Cadastrar Novo</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Consulta de Exame</h4>
+            <div class="form-group">
+                @Html.LabelFor(model => model.IdTipoExameConsulta, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-5">
+                    @Html.DropDownListFor(model => model.IdTipoExameConsulta, Model.ListarTiposExameConsultaViewModel, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.IdTipoExameConsulta, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" id="dropdownListarExames">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="control-label col-md-4">Lista de Exames</label>
+                <div class="col-md-5">
+                    @Html.DropDownListFor(model => model.IdExame, Model.ListarExamesConsultaViewModel, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.IdExame, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <div class="col-md-4"></div>
+                <div class="col-md-5">
+                    <a class="btn btn-primary form-control" name="btnPesquisaExame" id="btnPesquisaExame" onclick="OnclickPesquisarExame()">Buscar por Tipo de Exame</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.DataHoraConsulta, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-5">
+                    @Html.EditorFor(model => model.DataHoraConsulta, "", new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DataHoraConsulta, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="control-label col-md-4">Horas e Minutos</label>
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.HorasConsulta, "", new { htmlAttributes = new { @class = "form-control", placeholder = "HH" } })
+                    @Html.ValidationMessageFor(model => model.HorasConsulta, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-1">:</div>
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.MinutosConsulta, "", new { htmlAttributes = new { @class = "form-control", placeholder = "MM" } })
+                    @Html.ValidationMessageFor(model => model.MinutosConsulta, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Marcar Consulta" class="btn btn-success" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Voltar", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

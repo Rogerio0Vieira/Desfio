@@ -1,0 +1,40 @@
+﻿@model IEnumerable<DesafioIntelectah.Models.TipoExame>
+
+@{
+    ViewBag.Title = "Tipos de Exame";
+}
+
+<h2>Lista dos Tipos de Exame</h2>
+<br/>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NomeTipoExame)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DescricaoTipoExame)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeTipoExame)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescricaoTipoExame)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.CodigoTipoExame }) |
+                @Html.ActionLink("Detalhes", "Details", new { id = item.CodigoTipoExame }) |
+                @Html.ActionLink("Excluir", "Delete", new { id = item.CodigoTipoExame })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<a href="@Url.Action("Create", "TipoExame")" class="btn btn-primary form-group">+ Cadastrar Novo</a>

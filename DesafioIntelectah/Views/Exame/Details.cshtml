@@ -1,0 +1,42 @@
+﻿@model DesafioIntelectah.Models.Exame
+
+@{
+    ViewBag.Title = "Detalhes";
+}
+
+<h2>Detalhes</h2>
+
+<div>
+    <h4>Exame</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdTipoExame)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdTipoExame)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NomeExame)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomeExame)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ObservacaoExame)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ObservacaoExame)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.CodigoExame }) |
+    @Html.ActionLink("Voltar", "Index")
+</p>

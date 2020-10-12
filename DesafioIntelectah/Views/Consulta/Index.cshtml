@@ -1,0 +1,58 @@
+﻿@model IEnumerable<DesafioIntelectah.Models.Consulta>
+
+@{
+    ViewBag.Title = "Lista de Consultas";
+}
+
+<h2>Lista de Consultas</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdPaciente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdExame)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataHoraConsulta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HorasConsulta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MinutosConsulta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProtocoloConsulta)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.IdPaciente)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.IdExame)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DataHoraConsulta)
+    </td>
+    <th>
+        @Html.DisplayFor(modelItem => item.HorasConsulta)
+    </th>
+    <th>
+        @Html.DisplayFor(modelItem => item.MinutosConsulta)
+    </th>
+    <td>
+        @Html.DisplayFor(modelItem => item.ProtocoloConsulta)
+    </td>
+    
+</tr>
+}
+
+</table>
+
+<a href="@Url.Action("Create", "Consulta")" class="btn btn-primary form-group">+ Cadastrar Novo</a>
